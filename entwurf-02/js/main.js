@@ -1,4 +1,4 @@
-/* Fotoprofile · Startseite A
+/* Fotoprofile · Startseite B
    Ohne JS bleibt alles sichtbar und bedienbar; das Skript ergänzt Menü, Untermenüs und sanfte Einblendungen. */
 (function () {
   'use strict';

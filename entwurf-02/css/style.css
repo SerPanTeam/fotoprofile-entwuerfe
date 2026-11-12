@@ -1,37 +1,38 @@
-/* Fotoprofile Katrin Bernhard · Startseite · Richtung A
-   Eine Seite, ein Raster, eine Abstandsskala.
+/* Fotoprofile Katrin Bernhard · Startseite · Richtung B
+   Gleiches Raster und gleiche Abstandsskala wie A, mutigerer erster Bildschirm:
+   dunkle Bühne, das Foto auf Schwarz geht nahtlos in den Seitenhintergrund über.
    Abstände: 8 / 16 / 24 / 40 / 64 / 96 / 128 (keine anderen Werte).
-   Schriftgrade je Breite: 13 / 16 / 20 / 28 / 56 / 80 (Desktop). */
+   Schriftgrade je Breite: 13 / 16 / 20 / 26 / 56 / 72 (Desktop). */
 
-/* ---------- Schriften (lokal, SIL OFL 1.1) ---------- */
-@font-face { font-family: "Cormorant Garamond"; src: url("../fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Cormorant Garamond"; src: url("../fonts/cormorant-garamond-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: "Cormorant Garamond"; src: url("../fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/hanken-grotesk-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/hanken-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/hanken-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+/* ---------- Schriften (lokal, SIL OFL 1.1, variabel) ---------- */
+@font-face { font-family: "Bodoni Moda"; src: url("../fonts/bodoni-moda-latin-opsz-normal.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Bodoni Moda"; src: url("../fonts/bodoni-moda-latin-opsz-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Archivo"; src: url("../fonts/archivo-latin-wdth-normal.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; font-style: normal; font-display: swap; }
 
 /* ---------- Tokens ---------- */
 :root {
   --c-white: #ffffff;
   --c-tint: #f3f4f6;      /* kühles Hellgrau, Sektionswechsel */
-  --c-tint-2: #e8eaed;    /* Fußzeile, Linien auf Weiß */
+  --c-tint-2: #e8eaed;
   --c-line: #d6d9de;
-  --c-ink: #16171a;       /* fast Schwarz */
-  --c-ink-2: #4a4e55;     /* Sekundärtext */
+  --c-ink: #16171a;       /* fast Schwarz für Text */
+  --c-ink-2: #4a4e55;
+  --c-night: #060606;     /* exakt der Studiohintergrund des Hero-Fotos */
+  --c-night-text: #c9ccd1;
   --c-red: #bd0c26;       /* Markenrot aus dem Logo */
   --c-red-dark: #9c0a1f;
 
-  --f-serif: "Cormorant Garamond", "Times New Roman", serif;
-  --f-sans: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-serif: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --f-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
 
   /* Schriftgrade: 6 Stufen */
   --fs-caps: 13px;
   --fs-body: 16px;
   --fs-lead: 18px;
-  --fs-h3: 18px;          /* Telefon: lange Leistungsnamen passen ungetrennt in zwei Spalten */
-  --fs-h2: 36px;
-  --fs-display: 44px;
+  --fs-h3: 24px;
+  --fs-h2: 32px;
+  --fs-display: 40px;
+  --fs-card: var(--fs-body); /* Telefon: Leistungsnamen ungetrennt in zwei Spalten */
 
   /* Abstandsskala */
   --s-1: 8px;
@@ -47,16 +48,17 @@
   --gutter: var(--s-2);
   --cols: 4;
   --content: 1248px;
-  --radius: 16px;
+  --radius: 12px;
   --header-h: 64px;
+  --trust-h: 74px;        /* Leiste 72 px + je 1 px Linie unter Kopfzeile und Leiste */
 }
 
 @media (min-width: 768px) {
   :root {
     --fs-lead: 20px;
-    --fs-h3: 24px;
     --fs-h2: 44px;
     --fs-display: 56px;
+    --fs-card: var(--fs-h3);
     --section: var(--s-6);
     --margin: 32px;
     --gutter: var(--s-3);
@@ -66,9 +68,9 @@
 
 @media (min-width: 1024px) {
   :root {
-    --fs-h3: 28px;
+    --fs-h3: 26px;
     --fs-h2: 56px;
-    --fs-display: 72px;
+    --fs-display: 64px;
     --section: var(--s-7);
     --margin: 40px;
     --cols: 12;
@@ -77,7 +79,7 @@
 }
 
 @media (min-width: 1280px) {
-  :root { --fs-display: 80px; }
+  :root { --fs-display: 72px; }
 }
 
 /* ---------- Basis ---------- */
@@ -154,9 +156,10 @@ button { font: inherit; color: inherit; }
 .eyebrow {
   margin-bottom: var(--s-2);
   font-size: var(--fs-caps);
-  font-weight: 600;
+  font-weight: 500;
+  font-stretch: 125%;
   line-height: 1.6;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--c-ink-2);
 }
@@ -165,8 +168,8 @@ button { font: inherit; color: inherit; }
   font-family: var(--f-serif);
   font-size: var(--fs-h2);
   font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.005em;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
@@ -184,7 +187,7 @@ button { font: inherit; color: inherit; }
 .link-arrow:hover { color: var(--c-red); }
 .link-arrow:hover .icon { transform: translateX(4px); }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons: eckig, gesperrte Versalien ---------- */
 .button {
   display: inline-flex;
   align-items: center;
@@ -192,11 +195,14 @@ button { font: inherit; color: inherit; }
   min-height: 52px;
   padding: 0 var(--s-3);
   border: 1px solid transparent;
-  border-radius: 26px;
+  border-radius: 0;
   font-family: var(--f-sans);
-  font-size: var(--fs-body);
-  font-weight: 500;
+  font-size: var(--fs-caps);
+  font-weight: 600;
+  font-stretch: 112%;
+  letter-spacing: 0.12em;
   line-height: 1.2;
+  text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
@@ -205,6 +211,10 @@ button { font: inherit; color: inherit; }
 .button--primary:hover { background: var(--c-red-dark); }
 .button--secondary { border-color: var(--c-ink); color: var(--c-ink); background: transparent; }
 .button--secondary:hover { background: var(--c-ink); color: var(--c-white); }
+.button--ghost { border-color: var(--c-white); color: var(--c-white); background: transparent; }
+.button--ghost:hover { background: var(--c-white); color: var(--c-ink); }
+.button--inverse { background: var(--c-white); color: var(--c-red); }
+.button--inverse:hover { background: var(--c-ink); color: var(--c-white); }
 
 /* ---------- Kopfzeile ---------- */
 .header {
@@ -360,27 +370,26 @@ html.has-menu { overflow: hidden; }
   .nav__contact { display: none; }
 }
 
-/* ---------- Hero ---------- */
-.hero__inner {
-  row-gap: var(--s-4);
-  padding-block: var(--s-4);
+/* ---------- Hero: dunkle Bühne ---------- */
+.hero { background: var(--c-night); color: var(--c-white); }
+.hero__inner { padding-bottom: var(--s-4); }
+.hero__text { grid-column: 1 / -1; padding-top: var(--s-4); }
+.hero__media {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin-inline: calc(-1 * var(--margin));
 }
-.hero__text { grid-column: 1 / -1; }
-.hero__media { grid-column: 1 / -1; }
+.hero__text { grid-row: 2; }
 
 .hero__title {
-  text-wrap: balance;
-  font-size: var(--fs-lead);
+  font-size: var(--fs-caps);
   font-weight: 500;
-  line-height: 1.4;
-}
-.hero__title::before {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 2px;
-  margin-bottom: var(--s-3);
-  background: var(--c-red);
+  font-stretch: 125%;
+  line-height: 1.6;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--c-white);
 }
 
 .hero__claim {
@@ -389,7 +398,7 @@ html.has-menu { overflow: hidden; }
   font-size: var(--fs-display);
   font-weight: 400;
   line-height: 1.05;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 .hero__claim em { font-style: italic; }
@@ -399,7 +408,7 @@ html.has-menu { overflow: hidden; }
   margin-top: var(--s-3);
   font-size: var(--fs-lead);
   line-height: 1.5;
-  color: var(--c-ink-2);
+  color: var(--c-night-text);
 }
 
 .hero__actions {
@@ -409,41 +418,52 @@ html.has-menu { overflow: hidden; }
   margin-top: var(--s-4);
 }
 
-.hero__phone { margin-top: var(--s-3); color: var(--c-ink-2); }
-.hero__phone-link { color: var(--c-ink); font-weight: 500; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-.hero__phone-link:hover { color: var(--c-red); }
+.hero__phone { margin-top: var(--s-3); color: var(--c-night-text); }
+.hero__phone-link { color: var(--c-white); font-weight: 500; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.hero__phone-link:hover { text-decoration-thickness: 2px; }
+.hero :focus-visible { outline-color: var(--c-white); }
 
+/* Telefon/Tablet: Foto randlos oben, 4:3, oben verankert (Köpfe mit Luft) */
 .hero__img {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: var(--radius);
-  background: var(--c-ink);
+  object-position: 50% 0%;
+  background: var(--c-night);
 }
 
-@media (min-width: 768px) {
-  .hero__inner { align-items: center; }
-  .hero__text { grid-column: 1 / span 4; }
-  .hero__media { grid-column: 5 / span 4; }
-}
-
+/* Desktop: Text Spalten 1–5, Foto Spalten 6–12, Bild ohne Rand auf gleichem Schwarz,
+   unten bündig. Höhe = Fenster minus Kopfzeile und Vertrauensleiste. */
 @media (min-width: 1024px) {
-  .hero__text { grid-column: 1 / span 6; }
-  .hero__media { grid-column: 8 / span 5; }
-}
-
-/* Niedrige Desktop-Fenster (z. B. 1366×768): Bild 3:4 über 4 statt 5 Spalten,
-   damit die Vertrauensleiste ohne Scrollen sichtbar bleibt. */
-@media (min-width: 1024px) and (max-height: 899px) {
-  .hero__text { grid-column: 1 / span 7; }
-  .hero__media { grid-column: 9 / span 4; }
-}
-@media (min-width: 1024px) and (max-height: 799px) {
-  .hero__inner { padding-block: var(--s-3); }
+  .hero__inner {
+    height: clamp(560px, calc(100vh - var(--header-h) - var(--trust-h)), 856px);
+    height: clamp(560px, calc(100svh - var(--header-h) - var(--trust-h)), 856px);
+    padding-bottom: 0;
+  }
+  .hero__text {
+    grid-column: 1 / span 5;
+    grid-row: 1;
+    align-self: center;
+    padding-block: var(--s-3);
+  }
+  .hero__media {
+    grid-column: 6 / span 7;
+    grid-row: 1;
+    position: relative;
+    margin-inline: 0;
+  }
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: 100% 100%;
+  }
 }
 
 /* Vertrauensleiste direkt unter dem ersten Bildschirm */
-.trust { background: var(--c-tint); }
+.trust { background: var(--c-white); border-bottom: 1px solid var(--c-line); }
 .trust__list { row-gap: var(--s-1); padding-block: var(--s-3); }
 .trust__item {
   grid-column: 1 / -1;
@@ -511,8 +531,9 @@ html.has-menu { overflow: hidden; }
 .service-card__group {
   margin-top: var(--s-2);
   font-size: var(--fs-caps);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  font-stretch: 125%;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--c-ink-2);
 }
@@ -522,7 +543,7 @@ html.has-menu { overflow: hidden; }
   gap: var(--s-1);
   margin-top: var(--s-1);
   font-family: var(--f-serif);
-  font-size: var(--fs-h3);
+  font-size: var(--fs-card);
   font-weight: 500;
   line-height: 1.15;
 }
@@ -756,6 +777,91 @@ html.has-menu { overflow: hidden; }
 @media (min-width: 1024px) {
   .footer__col { grid-column: span 3; }
 }
+
+/* ---------- Richtung B: eigene Anordnung auf demselben Raster ---------- */
+
+/* Sehr schmale Telefone (< 375 px): Liste statt zwei Spalten, damit kein Leistungsname getrennt wird */
+@media (max-width: 374px) {
+  .services__list { grid-template-columns: minmax(0, 1fr); row-gap: var(--s-2); }
+  .service-card { display: grid; grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: var(--s-3) auto auto 1fr; column-gap: var(--s-2); }
+  .service-card__media { grid-row: 1 / -1; }
+  .service-card__group { grid-row: 2; margin-top: 0; }
+  .service-card__title { grid-row: 3; }
+}
+
+/* Pfeil an den Karten erst ab 1280 px: bei 1024 px ist die Karte 218 px breit,
+   „Bewerbungsfotos“ in Bodoni braucht die ganze Breite */
+@media (max-width: 1279px) {
+  .service-card__title .icon { display: none; }
+}
+
+/* Kopfzeile auf schmalen Telefonen: Schaltfläche ohne Breitschnitt, damit alles in 320 px passt */
+@media (max-width: 399px) {
+  .header__logo-img { width: 112px; }
+  .header__cta { font-stretch: 100%; letter-spacing: 0.08em; }
+}
+
+/* Hero-Schaltflächen: beim Umbruch gleich breit statt Treppe */
+.hero__actions .button { flex: 1 1 auto; }
+@media (min-width: 768px) {
+  .hero__actions .button { flex: 0 0 auto; }
+}
+
+/* Intro: ihr erster Satz als Aussage, der Rest rechts */
+.intro__statement { max-width: 24ch; }
+.intro__sign { margin-top: 0; }
+@media (max-width: 767px) {
+  /* Telefon: Signatur unter dem Text, Abstand 24 statt Sektionsraster 64 */
+  .intro__sign { order: 1; margin-top: calc(var(--s-3) - var(--s-5)); }
+}
+@media (min-width: 768px) {
+  .intro__head { grid-column: 1 / -1; grid-row: 1; }
+  .intro__sign { grid-column: 1 / span 4; grid-row: 2; }
+  .intro__text { grid-column: 5 / span 4; grid-row: 2; }
+}
+@media (min-width: 1024px) {
+  .intro__head { grid-column: 1 / span 10; }
+  .intro__sign { grid-column: 1 / span 5; }
+  .intro__text { grid-column: 7 / span 6; }
+}
+
+/* Über mich: Text links, Porträt rechts */
+@media (min-width: 768px) {
+  .about__text { grid-column: 1 / span 4; }
+  .about__media { grid-column: 5 / span 4; }
+}
+@media (min-width: 1024px) {
+  .about__text { grid-column: 1 / span 5; }
+  .about__media { grid-column: 7 / span 6; }
+}
+
+/* Kontakt: die einzige rote Fläche der Seite */
+.section--red { background: var(--c-red); color: var(--c-white); }
+.section--red .eyebrow,
+.section--red .contact__label,
+.section--red .contact__note { color: var(--c-white); }
+.section--red .contact__row { border-top-color: rgba(255, 255, 255, 0.5); }
+.section--red .contact__link:hover { color: var(--c-white); }
+.section--red :focus-visible { outline-color: var(--c-white); }
+
+/* Bodoni: bei kleinen Graden die Text-Optik (kräftigere Haarstriche),
+   sonst verschwinden Bindestriche, Schrägstriche und die Diagonale der 4. */
+.service-card__title,
+.quick__title,
+.contact__value {
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 11;
+}
+.rating__value {
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 24;
+}
+
+.area__place { border-radius: 0; }
+.intro__sign,
+.area__label,
+.contact__label,
+.footer__label { font-weight: 500; font-stretch: 125%; letter-spacing: 0.16em; }
 
 /* ---------- Bewegung: nur mit JS, nur ohne reduzierte Bewegung ---------- */
 @media (prefers-reduced-motion: no-preference) {

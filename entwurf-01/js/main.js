@@ -1,92 +1,83 @@
-/* Fotoprofile Katrin Bernhard · Startseite
-   Menü, Untermenüs und ruhiges Einblenden beim Scrollen. Ohne Abhängigkeiten. */
+/* Fotoprofile · Startseite A
+   Ohne JS bleibt alles sichtbar und bedienbar; das Skript ergänzt Menü, Untermenüs und sanfte Einblendungen. */
 (function () {
   'use strict';
 
-  var doc = document.documentElement;
-  var nav = document.getElementById('hauptnavigation');
-  var burger = document.querySelector('.burger');
-  var narrow = window.matchMedia('(max-width: 1279px)');
+  var html = document.documentElement;
+  var desktop = window.matchMedia('(min-width: 1200px)');
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  /* --- Menü auf schmalen Bildschirmen --- */
+  /* ---------- Mobiles Menü ---------- */
+  var burger = document.querySelector('.header__burger');
+  var nav = document.getElementById('nav');
+
   function setMenu(open) {
-    if (!nav || !burger) return;
+    if (!burger || !nav) return;
     nav.classList.toggle('is-open', open);
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-expanded', String(open));
     burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
-    doc.style.overflow = open ? 'hidden' : '';
+    html.classList.toggle('has-menu', open);
   }
 
-  if (nav && burger) {
-    burger.addEventListener('click', function () {
-      setMenu(burger.getAttribute('aria-expanded') !== 'true');
+  if (burger && nav) {
+    burger.setAttribute('role', 'button');
+    burger.addEventListener('click', function (event) {
+      event.preventDefault();
+      setMenu(!nav.classList.contains('is-open'));
     });
     nav.addEventListener('click', function (event) {
       if (event.target.closest('a')) setMenu(false);
     });
-    narrow.addEventListener('change', function () { setMenu(false); });
+    desktop.addEventListener('change', function () { setMenu(false); closeSubs(); });
   }
 
-  /* Auf schmalen Bildschirmen sind die Untermenüs immer offen: die Schalter sind dort nur Überschriften */
-  function syncToggles() {
-    Array.prototype.forEach.call(document.querySelectorAll('.nav__toggle'), function (toggle) {
-      toggle.disabled = narrow.matches;
-    });
-  }
-  syncToggles();
-  narrow.addEventListener('change', syncToggles);
-
-  /* --- Untermenüs auf breiten Bildschirmen --- */
-  var subItems = Array.prototype.slice.call(document.querySelectorAll('.nav__item--sub'));
+  /* ---------- Untermenüs ---------- */
+  var toggles = Array.prototype.slice.call(document.querySelectorAll('.nav__toggle'));
 
   function closeSubs(except) {
-    subItems.forEach(function (item) {
-      if (item === except) return;
-      item.classList.remove('is-open');
-      item.querySelector('.nav__toggle').setAttribute('aria-expanded', 'false');
-    });
+    toggles.forEach(function (t) { if (t !== except) t.setAttribute('aria-expanded', 'false'); });
   }
 
-  subItems.forEach(function (item) {
-    var toggle = item.querySelector('.nav__toggle');
+  toggles.forEach(function (toggle) {
     toggle.addEventListener('click', function () {
-      if (narrow.matches) return;
-      var open = !item.classList.contains('is-open');
-      closeSubs(item);
-      item.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      if (desktop.matches) closeSubs(toggle);
+      toggle.setAttribute('aria-expanded', String(!open));
     });
   });
 
   document.addEventListener('click', function (event) {
-    if (!event.target.closest('.nav__item--sub')) closeSubs();
+    if (desktop.matches && !event.target.closest('.nav__item--has-sub')) closeSubs();
   });
 
   document.addEventListener('keydown', function (event) {
     if (event.key !== 'Escape') return;
+    var openToggle = toggles.filter(function (t) { return t.getAttribute('aria-expanded') === 'true'; })[0];
     closeSubs();
-    if (burger && burger.getAttribute('aria-expanded') === 'true') {
-      setMenu(false);
-      burger.focus();
-    }
+    if (nav && nav.classList.contains('is-open')) { setMenu(false); burger.focus(); }
+    else if (openToggle) openToggle.focus();
   });
 
-  /* --- Einblenden beim Scrollen --- */
-  var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ---------- Einblendungen beim Scrollen ---------- */
+  if (calm.matches || !('IntersectionObserver' in window)) return;
 
-  if (reduced || !('IntersectionObserver' in window)) {
-    items.forEach(function (el) { el.classList.add('is-visible'); });
-    return;
-  }
+  var targets = document.querySelectorAll(
+    '.section__head, .intro__text, .service-card, .quick, .portfolio__row, .about__media, .about__text, .rating, .area__regions, .area__address, .contact__details, .contact__button'
+  );
 
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
 
-  items.forEach(function (el) { observer.observe(el); });
+  Array.prototype.forEach.call(targets, function (el) {
+    var box = el.getBoundingClientRect();
+    if (box.top < window.innerHeight) return; /* bereits sichtbar: nichts verstecken */
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
 })();

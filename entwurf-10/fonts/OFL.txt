@@ -1,8 +1,0 @@
-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
------------------------------------------------------------
-
-Fonts in this directory:
-- Cormorant Garamond (Copyright 2015 The Cormorant Project Authors, https://github.com/CatharsisFonts/Cormorant)
-- Plus Jakarta Sans (Copyright 2020 The Plus Jakarta Sans Project Authors, https://github.com/tokotype/PlusJakartaSans)
-
-Licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).
