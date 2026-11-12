@@ -1,0 +1,183 @@
+/* ==========================================================================
+   Richtung B · Design-Tokens
+   Gleiches Raster und gleiche Skalen wie Richtung A; andere Schriften, Kanten und Flächen.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("../fonts/bodoni-moda-latin-ext-opsz-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("../fonts/bodoni-moda-latin-opsz-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-latin-ext-600-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* Raster: Container 1280 mit 40 px Innenrand = 1200 px Inhalt, 12 Spalten, 24 px Zwischenraum */
+  --container-max: 1280px;
+  --page-pad: 40px;
+  --gap: 24px;
+
+  /* Abstände: eine Skala */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 32px;
+  --s-6: 48px;
+  --s-7: 64px;
+
+  /* Ein Abstand für alle Sektionen */
+  --section-y: 112px;
+  --strip-y: 24px;
+  --strip-h: 104px;
+  --header-h: 80px;
+  /* Höhe der Label-Zeile plus Abstand: Text rechts beginnt auf der Höhe der h2 */
+  --head-offset: calc(var(--fs-small) * 1.4 + var(--s-3));
+  --logo-h: 40px;
+  --logo-h-xs: 30px;
+
+  /* Schriften */
+  --font-display: "Bodoni Moda", "Bodoni 72", Didot, Georgia, serif;
+  --font-text: "Instrument Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --fw-display: 400;
+  --ls-display: -.01em;
+  /* Optische Größe der Bodoni Moda: kleinere Werte = kräftigere Haarlinien */
+  --fvs-h1: "opsz" 44;
+  --fvs-h2: "opsz" 30;
+  --fvs-h3: "opsz" 14;
+  --ls-caps: .14em;
+  --ls-nav: .08em;
+
+  /* Schriftgrößen: sechs Stufen */
+  --fs-h1: 80px;
+  --fs-h2: 56px;
+  --fs-h3: 28px;
+  /* Titel der Leistungskarte: auf dem Telefon kleiner, damit zwei Spalten ohne Worttrennung passen */
+  --fs-card-title: var(--fs-h3);
+  --fs-lead: 18px;
+  --fs-body: 16px;
+  --fs-small: 13px;
+  --lh-h1: 1.05;
+  --lh-h2: 1.12;
+  --lh-h3: 1.25;
+  --lh-text: 1.65;
+  --measure: 30em;
+
+  /* Farben */
+  --c-bg: #ffffff;
+  --c-bg-alt: #f3f4f6;
+  --c-ink: #17181a;
+  --c-text: #3d4045;
+  --c-muted: #63676d;
+  --c-line: #dfe1e5;
+  --c-accent: #bd0c26;
+  --c-accent-strong: #9c0a1f;
+  --c-on-accent: #ffffff;
+  --c-label: #17181a;
+  --c-dark: #141517;
+  --c-dark-soft: #232528;
+  --c-stage: #101010;
+  --c-on-dark: #ffffff;
+  --c-on-dark-soft: #c9ccd1;
+
+  /* Form */
+  --radius: 0px;
+  --radius-btn: 0px;
+  --btn-h: 52px;
+  --btn-h-compact: 44px;
+  --tap: 44px;
+  --bar-h: 56px;
+
+  /* Portfolio */
+  --portfolio-cols: 3;
+  --portfolio-cols-mobile: 2;
+  --ratio-hoch: 2 / 3;
+  --ratio-quer: 3 / 2;
+}
+
+@media (max-width: 1199px) {
+  :root {
+    --section-y: 96px;
+    --fs-h1: 60px;
+    --fs-h2: 44px;
+    --fs-h3: 22px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --page-pad: 20px;
+    --gap: 16px;
+    --section-y: 64px;
+    --strip-y: 24px;
+    --header-h: 68px;
+    --logo-h: 34px;
+    --fs-h1: 44px;
+    --fs-h2: 34px;
+    --fs-h3: 24px;
+    --btn-h-compact: 40px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 767px) {
+  :root {
+    --fs-card-title: 18px;
+  }
+}
