@@ -1,0 +1,109 @@
+/* Fotoprofile Katrin Bernhard · Richtung C «Kontaktbogen»
+   Tokens: Farben, Schrift, Raster, Abstände, Bewegung. */
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url("../fonts/archivo-latin-ext-wdth-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url("../fonts/archivo-latin-wdth-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/dm-mono-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/dm-mono-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* Farben: Weiß, fast Schwarz, Rot des Logos, kühles Grau des Leuchttischs */
+  --red: #bd0c26;
+  --red-deep: #990a1f;
+  --ink: #101012;
+  --paper: #ffffff;
+  --table: #f0f1f3;
+  --text: #2c2e32;
+  --muted: #5d6167;
+  --line: #d9dbdf;
+  --on-dark: #ffffff;
+  --on-dark-muted: #b4b7bd;
+  --on-red-muted: #ffe3e7;
+
+  /* Schrift */
+  --font-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* Kegel: sechs Stufen */
+  --fs-mega: 240px;
+  --fs-xl: 88px;
+  --fs-l: 56px;
+  --fs-m: 24px;
+  --fs-body: 17px;
+  --fs-mono: 13px;
+
+  /* Raster */
+  --container: 1320px;
+  --pad: 40px;
+  --gutter: 24px;
+
+  /* Abstände: eine Skala */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 40px;
+  --s-6: 64px;
+  --s-7: 96px;
+  --s-8: 128px;
+  --section: var(--s-8);
+
+  --header-h: 72px;
+  --button-h: 52px;
+
+  /* Bewegung */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-shutter: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+@media (max-width: 1199px) {
+  :root {
+    --fs-mega: 184px;
+    --fs-xl: 64px;
+    --fs-l: 44px;
+    --section: var(--s-7);
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --fs-xl: 44px;
+    --fs-l: 32px;
+    --fs-m: 20px;
+    --fs-body: 16px;
+    --pad: 20px;
+    --gutter: 16px;
+    --section: var(--s-6);
+    --header-h: 60px;
+  }
+}

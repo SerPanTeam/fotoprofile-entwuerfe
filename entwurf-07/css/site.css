@@ -1,0 +1,681 @@
+@font-face{font-family:Cormorant;src:url("../fonts/cormorant.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Manrope;src:url("../fonts/manrope.woff2") format("woff2");font-weight:500;font-display:swap}
+:root{
+  --ink:#1c1b1b;--muted:#555253;--red:#bd0c26;--line:#d9d7d7;--paper:#fff;--wash:#f5f4f4;
+  --s1:8px;--s2:16px;--s3:24px;--s4:40px;--s5:64px;--s6:96px;
+  --space:var(--s6);--edge:var(--s5);--gap:var(--s3);
+  --small:.8125rem;--body:clamp(.9375rem,.87rem + .18vw,1rem);
+  --lead:clamp(1rem,.92rem + .35vw,1.25rem);
+  --label:clamp(1.75rem,1.54rem + .75vw,2.125rem);
+  --heading:clamp(2.625rem,2rem + 2.1vw,4.5rem);
+  --display:clamp(2.875rem,2rem + 3.5vw,5.375rem);
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:var(--paper);font:500 var(--body)/1.65 Manrope,sans-serif}
+h1,h2,h3,p,figure,ul{margin:0}
+h1,h2,h3{font:500 var(--heading)/.99 Cormorant,serif;letter-spacing:-.025em;text-wrap:balance}
+h1{font-size:var(--display)}
+h3{font-size:var(--label);line-height:1.1}
+p{max-width:62ch}
+a{color:inherit;text-underline-offset:.24em}
+a:hover{color:var(--red)}
+button,summary{cursor:pointer}
+button{font:inherit;color:inherit}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+img{display:block;width:100%;height:auto}
+address{font-style:normal}
+small{font-size:var(--small)}
+.wrap{width:min(1280px,calc(100% - var(--edge) * 2));margin-inline:auto}
+.skip-link{position:fixed;left:var(--s2);top:var(--s2);z-index:10;background:var(--paper);padding:var(--s2);transform:translateY(-200%)}
+.skip-link:focus{transform:none}
+.button{
+  display:inline-flex;align-items:center;justify-content:center;min-height:48px;
+  padding:var(--s1) var(--s3);background:var(--red);color:#fff;
+  font-size:var(--small);text-decoration:none;white-space:nowrap
+}
+.button:hover{color:#fff;background:#97101f}
+.text-link{display:inline-block}
+.header{position:relative;z-index:2;border-bottom:1px solid var(--line);background:var(--paper)}
+.header__inner{display:flex;align-items:center;gap:var(--s3);min-height:88px}
+.header__logo{width:184px;flex:none}
+.nav{display:flex;align-items:center;gap:var(--s2);margin-left:auto;font-size:var(--small)}
+.nav a{text-decoration:none}
+.nav__group{position:relative}
+.nav__group summary{white-space:nowrap}
+.nav__group ul{list-style:none;padding:var(--s2);position:absolute;top:calc(100% + var(--s2));left:0;min-width:208px;background:var(--paper);border:1px solid var(--line)}
+.nav__group li+li{margin-top:var(--s1)}
+.header__toggle{background:none;border:1px solid var(--line);min-height:48px;padding:0 var(--s2)}
+.hero{padding-block:var(--s3)}
+.direction-a .hero{display:grid;grid-template-columns:5fr 7fr;align-items:center;gap:var(--gap)}
+.hero__copy p{margin-top:var(--s3);font-size:var(--lead)}
+.hero__actions{display:flex;align-items:center;gap:var(--s2) var(--s3);flex-wrap:wrap;margin-top:var(--s3)}
+.hero__phone{margin-top:var(--s2)}
+.hero__image{background:var(--wash)}
+.hero__triptych{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+.hero__triptych img{aspect-ratio:5/7;object-fit:cover;object-position:center top}
+.direction-b .hero__triptych figure:nth-child(2) img{object-position:center 40%}
+.direction-b .hero__triptych figure:nth-child(3) img{object-position:center 18%}
+.direction-b .hero__copy{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2) var(--gap);align-items:end;margin-bottom:var(--s3)}
+.direction-b .hero__copy h1{grid-row:span 2}
+.direction-b .hero__copy p,.direction-b .hero__actions,.direction-b .hero__phone{margin:0}
+.direction-b .hero__phone{grid-column:2}
+.direction-b .hero__actions .text-link{color:var(--red)}
+.trust{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:80px;border-block:1px solid var(--line)}
+.trust a{display:grid}
+.trust small{color:var(--muted);text-decoration:none}
+main>section+section:not(.trust){margin-top:var(--space)}
+.intro,.about,.testimonials,.area,.contact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap);align-items:start}
+.intro p{font-size:var(--lead)}
+.section-label{font:500 var(--small)/1.5 Manrope,sans-serif;text-transform:uppercase;letter-spacing:.13em}
+.services>h2+.section-label{margin-block:var(--s3) var(--s2)}
+.service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4) var(--gap)}
+.service h3 a{text-decoration:none}
+.service p{margin-top:var(--s1);max-width:57ch}
+.service__image{display:block;margin-bottom:var(--s2)}
+.service__image img{aspect-ratio:7/5;object-fit:cover;object-position:center var(--focus, 30%);background:var(--wash)}
+.service__image img[src*="baby-09"]{--focus:50%}
+.service__image img[src*="baucherl-04"]{--focus:40%}
+.service__image img[src*="portrait-06"]{--focus:9%}
+.service__image img[src*="hundemenschen-01"]{--focus:0%}
+.service-single{margin-top:var(--s4);border-block:1px solid var(--line);padding-block:var(--s2)}
+.professional{margin-top:var(--s4);border-top:1px solid var(--line);padding-top:var(--s3)}
+.professional .section-label{margin-bottom:var(--s2)}
+.service__booking{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s2);margin-top:var(--s2);color:var(--red)}
+.private-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap);align-items:start}
+.private-index figure{order:1}
+.service-list .service{border-top:1px solid var(--line);padding-block:var(--s2)}
+.service-list .service:first-child{padding-top:var(--s2)}
+.section-heading{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);margin-bottom:var(--s3)}
+.portfolio__row{display:flex;gap:var(--gap)}
+.portfolio__row+.portfolio__row{margin-top:var(--gap)}
+.portfolio__row figure{flex:var(--ratio) 1 0;min-width:0}
+.portfolio__row img{aspect-ratio:var(--ratio)}
+.about{align-items:center}
+.about figure{background:var(--wash)}
+.about img{width:auto;max-width:100%;max-height:440px;margin-inline:auto}
+.about .section-label{margin-block:var(--s2)}
+.about .text-link,.testimonials .text-link,.area .text-link{margin-top:var(--s2)}
+.testimonials,.area,.contact{border-top:1px solid var(--line);padding-top:var(--s3)}
+.testimonials__rating{font:500 var(--heading)/1 Cormorant,serif}
+.area p,.contact p+p{margin-top:var(--s2)}
+.contact .button{margin-top:var(--s3)}
+.footer{margin-top:var(--space);padding-block:var(--s4);background:var(--wash)}
+.footer__inner{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.footer__logo{width:min(184px,100%)}
+.footer nav{display:flex;gap:var(--s1) var(--s3);flex-wrap:wrap;grid-column:1/-1}
+@media (prefers-reduced-motion:no-preference){
+  .hero__copy{animation:arrive .38s ease-out both}
+  @keyframes arrive{from{opacity:0;transform:translateY(var(--s1))}to{opacity:1;transform:none}}
+  .will-reveal{transition:transform .36s ease-out;transform:translateY(var(--s1))}
+  .will-reveal.is-visible,.will-reveal:focus-within{transform:none}
+}
+@media(max-width:1199px){
+  :root{--edge:var(--s4);--space:var(--s5)}
+  .header__inner{flex-wrap:wrap;gap:var(--s1) var(--s2);padding-block:var(--s2);min-height:0}
+  .header__inner>.button{margin-left:auto}
+  .nav{order:1;width:100%;margin:0;flex-wrap:wrap}
+  .js .nav{display:none}
+  .js .nav.is-open{display:flex}
+  .nav.is-open{max-height:60vh;overflow:auto;align-items:start;padding:var(--s2) 4px}
+  .nav__group ul{position:static;margin-top:var(--s1)}
+}
+@media(max-width:800px){
+  :root{--edge:var(--s3);--gap:var(--s2)}
+  .direction-a .hero,.direction-b .hero__copy{grid-template-columns:1fr}
+  .direction-b .hero__copy h1{grid-row:auto}
+  .direction-b .hero__phone{grid-column:auto}
+  .hero__copy h1{max-width:15ch}
+  .hero__copy p{margin-top:var(--s2)}
+  .direction-a .hero__image{margin-top:var(--s2)}
+  .private-index{grid-template-columns:1fr}
+  .private-index figure{order:-1}
+}
+@media(max-width:560px){
+  :root{--edge:var(--s2);--space:var(--s4)}
+  .header__logo{width:126px}
+  .header__inner{gap:var(--s1)}
+  .header__inner>.button,.header__toggle{padding-inline:var(--s1);font-size:var(--small)}
+  .nav{flex-direction:column;align-items:stretch}
+  .nav>a,.nav summary{padding-block:var(--s1)}
+  .nav__group ul{min-width:0}
+  .trust{align-items:start;flex-direction:column;gap:var(--s1);padding-block:var(--s2)}
+  .intro,.about,.testimonials,.area,.contact,.service-grid,.footer__inner{grid-template-columns:1fr}
+  .hero__triptych,.portfolio__row{gap:var(--s1)}
+  .portfolio__row{display:grid;grid-template-columns:1fr}
+  .portfolio__row+.portfolio__row{margin-top:var(--s1)}
+  .about img{max-height:360px}
+  .section-heading{flex-wrap:wrap}
+}
+
+/* Keep the two business offers aligned to the same axes as the private offers. */
+
+.professional__passport{border-top:1px solid var(--line);margin-top:var(--s3);padding-top:var(--s2)}
+.direction-b h1{color:var(--red);font-size:var(--heading)}
+.direction-b .hero__triptych img{height:min(34vw,440px);aspect-ratio:auto}
+@media(max-width:800px){
+  .direction-b .hero__triptych img{height:auto;aspect-ratio:5/7}
+}
+
+.header__toggle::before{
+  content:"";display:inline-block;width:var(--s2);height:var(--s1);
+  margin-right:var(--s1);border-block:1px solid currentColor;vertical-align:.12em;
+}
+.header__toggle[aria-expanded="true"]{background:var(--wash)}
+
+.direction-b .hero{display:grid;gap:var(--s3);padding-block:var(--s3)}
+.hero__masthead{text-align:center}
+.direction-b .hero__masthead h1{
+  font:500 var(--small)/1.55 Manrope,sans-serif;
+  color:var(--ink);text-transform:uppercase;letter-spacing:.09em;
+}
+.hero__masthead p{
+  max-width:none;margin-top:var(--s1);color:var(--red);
+  font:500 var(--display)/.94 Cormorant,serif;letter-spacing:-.035em;
+}
+.direction-b .hero__triptych img{height:min(33vw,416px)}
+.direction-b .hero__triptych figure:nth-child(2) img{object-position:center 25%}
+.direction-b .hero__copy{
+  grid-template-columns:1fr auto;
+  align-items:center;gap:var(--s1) var(--gap);margin:0;
+}
+.direction-b .hero__copy>p{grid-row:span 2}
+.direction-b .hero__actions{justify-content:flex-end}
+.direction-b .hero__phone{text-align:right}
+.direction-b .private-index{
+  grid-template-columns:calc((100% - 2 * var(--gap)) / 3) 1fr;
+}
+.direction-b .private-index figure{order:0}
+.direction-b .service-list{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2) var(--gap);
+}
+.direction-b .about figure{background:none}
+.direction-b .about img{margin-inline:0;width:min(100%,440px);max-height:none}
+.direction-b .contact {
+  color: #fff;
+  padding-block: var(--s4);
+  background-color: var(--ink);
+  box-shadow: 0 0 0 100vmax var(--ink);
+  clip-path: inset(0 -100vmax);
+}
+.direction-b .contact a:hover{color:#fff}
+.direction-b .contact a:focus-visible{outline-color:#fff}
+.direction-b .footer{margin-top:0}
+@media(max-width:800px){
+  .direction-b .hero__triptych img{height:auto;aspect-ratio:5/7}
+  .direction-b .private-index{grid-template-columns:1fr}
+  .direction-b .private-index figure img{aspect-ratio:3/2;object-fit:cover;object-position:center 48%}
+}
+@media(max-width:560px){
+  .direction-b .hero{gap:var(--s2)}
+  .direction-b .hero__triptych{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .direction-b .hero__copy,.direction-b .service-list{grid-template-columns:1fr}
+  .direction-b .hero__copy>p{grid-row:auto}
+  .direction-b .hero__actions{justify-content:flex-start}
+  .direction-b .hero__phone{text-align:left}
+  .direction-b .private-index figure img{aspect-ratio:1/1}
+}
+@media(min-width:801px){
+  .direction-b .intro,.direction-b .about,.direction-b .testimonials,.direction-b .area,.direction-b .contact,
+  .direction-b .professional .service-grid{
+    grid-template-columns:calc((100% - 2 * var(--gap)) / 3) 1fr;
+  }
+}
+@media(max-width:800px){
+  .direction-b .private-index figure img{aspect-ratio:4/3;object-position:center 23%}
+}
+@media(max-width:560px){
+  .direction-b .private-index figure img{aspect-ratio:1/1}
+}
+
+@media(min-width:801px){
+  .trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+  .trust a{justify-self:start}
+  .footer__inner{grid-template-columns:calc((100% - 2 * var(--gap)) / 3) 1fr}
+}
+
+.intro__copy p + p { margin-top: var(--s2); }
+.service h4 {
+  margin: 0;
+  font: 500 var(--label)/1.1 Cormorant, serif;
+  letter-spacing: -.025em;
+}
+.service h4 a { text-decoration-thickness: 1px; text-decoration-color: var(--line); }
+.service h4 a:hover, .service h4 a:focus-visible { text-decoration-color: currentColor; }
+.studio-services {
+  margin-block: var(--s3) var(--s4);
+  padding-block: var(--s3);
+  border-block: 1px solid var(--line);
+}
+.studio-services__grid, .private-services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s3) var(--gap);
+}
+.studio-services__grid { margin-top: var(--s2); }
+.studio-services .service__booking { align-items: center; }
+.studio-services .service__booking span { color: var(--ink); }
+.private-label { margin-bottom: var(--s2); }
+.hero__phone { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); }
+.hero__quick-link { color: var(--red); }
+.portfolio__row + .portfolio__row { margin-top: var(--s3); }
+@media (max-width: 560px) {
+  .studio-services__grid, .private-services { grid-template-columns: minmax(0, 1fr); }
+  .studio-services__grid > .service + .service {
+    border-top: 1px solid var(--line);
+    padding-top: var(--s2);
+  }
+  .portfolio__row + .portfolio__row { margin-top: var(--s2); }
+}
+
+.direction-b .hero__phone { justify-content: flex-end; }
+.direction-b .hero__triptych img { height: min(33vw, 392px); }
+.direction-b .service-list .service { padding-block: var(--s2); }
+@media (max-width: 800px) {
+  .direction-b .hero__triptych img { height: auto; }
+}
+@media (max-width: 560px) {
+  .direction-b .hero__triptych {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    aspect-ratio: 15 / 14;
+  }
+  .direction-b .hero__triptych figure:first-child { grid-row: span 2; }
+  .direction-b .hero__triptych img { height: 100%; aspect-ratio: auto; }
+  .direction-b .hero__triptych figure:nth-child(2) img { object-position: center 18%; }
+  .direction-b .hero__phone { justify-content: flex-start; }
+  .direction-b .private-index figure img { aspect-ratio: 4 / 3; }
+}
+
+.service h4 a { text-decoration-color: #777374; }
+.studio-services .service__booking { margin-top: var(--s1); }
+.studio-services .service__booking + p { margin-top: var(--s2); }
+
+@media (min-width: 561px) and (max-width: 800px) {
+  .direction-b .studio-services__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .direction-b .studio-services__grid > .service:last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 560px) {
+  .hero__actions {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 4px var(--s2);
+    align-items: center;
+  }
+  .hero__actions .button { grid-row: span 2; }
+  .hero__actions .text-link { justify-self: start; }
+  .hero__phone { gap: var(--s1); font-size: var(--small); }
+}
+
+.service-single {
+  margin-top: var(--s3);
+  padding-block: var(--s2) 0;
+  border-bottom: 0;
+}
+
+@media (max-width: 359px) {
+  .header__logo { width: 96px; }
+  .header__toggle::before { display: none; }
+}
+
+/* Keep long German words and links within the column at enlarged text sizes. */
+h1, h2, h3, h4, p, address, a, summary, .trust span {
+  overflow-wrap: anywhere;
+}
+h1, h2, h3, h4 { hyphens: auto; }
+
+/* Studio portraits: a dominant photograph and an offset pair. */
+.direction-b .hero {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto 1fr;
+  column-gap: var(--gap);
+  row-gap: var(--s3);
+  align-items: center;
+  background: var(--ink);
+  color: white;
+  box-shadow: 0 0 0 100vmax var(--ink);
+  clip-path: inset(0 -100vmax);
+}
+.direction-b .hero__masthead {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: left;
+  align-self: end;
+  padding-top: var(--s3);
+}
+.direction-b .hero__masthead p {
+  color: white;
+  font-size: clamp(2.75rem, 5.25vw, 5rem);
+}
+.direction-b .hero__feature {
+  grid-area: 1 / 1 / 3;
+}
+.direction-b .hero__feature img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.direction-b .hero__copy {
+  grid-area: 2 / 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: start;
+  gap: var(--s2);
+  margin: 0;
+}
+.direction-b .hero__actions, .direction-b .hero__phone {
+  justify-content: flex-start;
+  text-align: left;
+}
+.direction-b .hero__actions .text-link, .direction-b .hero__quick-link { color: white; }
+.direction-b .hero a:hover { color: #f2f2f3; }
+.direction-b .hero a:focus-visible { outline-color: white; }
+.direction-b .hero__support {
+  grid-area: 1 / 3 / 3;
+  display: grid;
+  gap: var(--s2);
+}
+.direction-b .hero__support img {
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  object-position: center 12%;
+}
+.direction-b .hero__support figure:last-child img { object-position: center 14%; }
+.direction-b .hero__masthead h1 { color: white; }
+.direction-b .contact {
+  color: var(--ink);
+  background-color: var(--wash);
+  box-shadow: 0 0 0 100vmax var(--wash);
+}
+.direction-b .contact a:not(.button):hover { color: var(--red); }
+.direction-b .contact a:focus-visible { outline-color: var(--red); }
+@media (max-width: 800px) {
+  .direction-b .hero { grid-template-columns: 2fr 1fr; grid-template-rows: auto; gap: var(--s2); }
+  .direction-b .hero__masthead { grid-area: 1 / 1 / 2 / -1; padding: 0; }
+  .direction-b .hero__feature { grid-area: 2 / 1; }
+  .direction-b .hero__support { grid-area: 2 / 2; gap: var(--s1); align-self: stretch; grid-template-rows: repeat(2, minmax(0, 1fr)); }
+  .direction-b .hero__support img { height: 100%; aspect-ratio: auto; }
+  .direction-b .hero__copy { grid-area: 3 / 1 / 4 / -1; }
+}
+@media (min-width: 561px) and (max-width: 800px) {
+  .direction-b .hero__feature img { aspect-ratio: 5 / 4; }
+}
+@media (max-width: 560px) {
+  .direction-b .hero__masthead p { font-size: clamp(2.25rem, 8.5vw, 3rem); }
+  .direction-b .hero__copy { gap: var(--s1); }
+}
+
+/* Review 11.11.2026 · Navigation: eigener Marker, mobiles Menü in einer Spalte mit eigenem Scrollen. */
+.nav__group summary { list-style: none; display: flex; align-items: center; gap: 8px; }
+.nav__group summary::-webkit-details-marker { display: none; }
+.nav__group summary::after {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+.nav__group[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+@media (max-width: 1199px) {
+  .js .nav.is-open {
+    display: block;
+    max-height: calc(100vh - 100px);
+    max-height: calc(100dvh - 100px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    font-size: 1rem;
+  }
+  .js .nav.is-open > a,
+  .js .nav.is-open summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    padding-block: 8px;
+    border-bottom: 1px solid var(--line);
+    font-size: 1rem;
+  }
+  .js .nav.is-open .nav__group ul {
+    position: static;
+    min-width: 0;
+    margin: 0;
+    padding: 8px 0 8px 16px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .js .nav.is-open .nav__group li + li { margin-top: 0; }
+  .js .nav.is-open .nav__group li a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 1rem;
+  }
+}
+
+/* Review 11.11.2026 · Kopfzeile bleibt beim Scrollen stehen; Logo auf dem Telefon mindestens 34 px hoch. */
+.header { position: sticky; top: 0; z-index: 20; background: var(--paper); border-bottom: 1px solid var(--line); }
+.skip-link { z-index: 30; }
+section[id], #studio-services { scroll-margin-top: 104px; }
+@media (max-width: 1199px) {
+  html:not(.js) .header { position: relative; }
+}
+@media (max-width: 560px) {
+  .header__logo { width: min(172px, calc(100% - 176px)); flex: none; }
+  .header__inner > .button { flex: none; }
+  .header__toggle { flex: none; width: 48px; padding: 0; font-size: 0; }
+  .header__toggle::before { display: inline-block; width: 16px; height: 8px; margin: 0; }
+}
+
+/* Review 11.11.2026 · Zeilenlänge im Einleitungstext, Abstände und h2 auf dem Telefon. */
+.intro__copy p { max-width: 31em; }
+@media (max-width: 560px) {
+  :root { --space: var(--s5); --heading: 2.25rem; }
+}
+
+/* Review 11.11.2026 · Hero: drittes Bild ist ein bekleidetes Paar; Ausschnitt je Bild einzeln gesetzt. */
+.direction-b .hero__support figure:last-child img { object-position: 45% 0%; }
+
+/* Review 11.11.2026 · Hero-Collage auf einem Raster: rechte Bildspalte ist exakt so hoch wie das Hauptbild. */
+.direction-b .hero__feature, .direction-b .hero__support { align-self: stretch; }
+.direction-b .hero__feature figure { height: 100%; }
+.direction-b .hero__feature img { height: 100%; }
+.direction-b .hero__support {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--s2);
+}
+.direction-b .hero__support figure { position: relative; min-height: 0; }
+.direction-b .hero__support img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+}
+@media (max-width: 800px) {
+  .direction-b .hero__support { gap: var(--s2); }
+}
+
+/* Review 11.11.2026 · Kinderbild im Hero: Luft über dem Scheitel des Mädchens. */
+.direction-b .hero__support figure:first-child img { object-position: center 6%; }
+
+/* Review 11.11.2026 · Leistungen: Foto endet auf derselben Linie wie die Liste; drei Spalten auch auf dem Tablet. */
+@media (min-width: 801px) {
+  .direction-b .private-index { align-items: stretch; }
+  .direction-b .private-index__image { position: relative; min-height: 0; }
+  .direction-b .private-index__image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+}
+@media (min-width: 561px) and (max-width: 800px) {
+  .direction-b .studio-services__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .direction-b .studio-services__grid > .service:last-child { grid-column: auto; }
+}
+
+/* Review 11.11.2026 · Wiesenbild auf Tablet und Telefon: beide Gesichter vollständig im Ausschnitt. */
+@media (max-width: 800px) {
+  .direction-b .private-index figure img { object-position: center 40%; }
+}
+
+/* Review 2 · Leistungen: neun gleiche Karten mit Foto 4:5, nur Name; Schnellleistungen als dunkle Leiste über die volle Breite. */
+.direction-b .services > h2 { margin-bottom: var(--s4); }
+.direction-b .services > .service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s4) var(--gap);
+}
+.direction-b .services .service { position: relative; }
+.direction-b .services .service__image { margin-bottom: var(--s2); }
+.direction-b .services .service__image img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: var(--focus, 50% 30%);
+}
+.direction-b .services .service h3 a { text-decoration: none; }
+.direction-b .services .service h3 a::before { content: ""; position: absolute; inset: 0; }
+.direction-b .services .service h3 a::after {
+  content: " ↗";
+  color: var(--red);
+  font: .65em Manrope, sans-serif;
+}
+.quick-services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s3) var(--gap);
+  align-items: start;
+  margin-top: var(--s5);
+  padding-block: var(--s4);
+}
+.direction-b .quick-services {
+  color: #fff;
+  background: var(--ink);
+  box-shadow: 0 0 0 100vmax var(--ink);
+  clip-path: inset(0 -100vmax);
+}
+.quick-services__list {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s3) var(--gap);
+}
+.quick-service h4 {
+  margin: 0;
+  font: 500 var(--label)/1.1 Cormorant, serif;
+  letter-spacing: -.025em;
+}
+.quick-service h4 a { text-decoration-thickness: 1px; text-decoration-color: #8f8b8c; }
+.quick-service .service__booking { align-items: center; margin-top: var(--s2); color: inherit; }
+.direction-b .quick-services a:not(.button):hover { color: #f2f2f3; text-decoration-color: currentColor; }
+.direction-b .quick-services a:focus-visible { outline-color: #fff; }
+@media (max-width: 560px) {
+  .direction-b .services > h2 { margin-bottom: var(--s3); }
+  .direction-b .services > .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s3) var(--s2);
+  }
+  .direction-b .services .service__image { margin-bottom: var(--s1); }
+  .direction-b .services .service h3 { font-size: 1.1875rem; line-height: 1.2; letter-spacing: -.01em; }
+  /* Die neunte Karte stünde in zwei Spalten allein; Bewerbungsfotos steht direkt darunter in der Leiste. */
+  .direction-b .services .service--also-quick { display: none; }
+  .quick-services { grid-template-columns: minmax(0, 1fr); margin-top: var(--s4); padding-block: var(--s3); }
+  .quick-services__list { grid-column: auto; grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Review 2 · Über mich, Bewertungen, Anfahrt, Kontakt: drei Spalten des Seitenrasters, rechtes Drittel gefüllt. */
+.direction-b .about, .direction-b .testimonials, .direction-b .area, .direction-b .contact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.direction-b .about { align-items: end; }
+.direction-b .about img { width: 100%; }
+.direction-b .about .section-label { margin-block: var(--s2) 0; }
+.direction-b .testimonials__rating { margin-bottom: var(--s2); }
+.direction-b .testimonials__more { align-self: end; }
+.direction-b .testimonials .text-link { margin-top: 0; }
+.direction-b .contact .button { margin-top: 0; }
+.direction-b .area p { margin-top: 0; }
+@media (max-width: 1000px) {
+  .direction-b .about, .direction-b .testimonials, .direction-b .area, .direction-b .contact {
+    grid-template-columns: calc((100% - 2 * var(--gap)) / 3) 1fr;
+  }
+  .direction-b .about > :first-child, .direction-b .testimonials > :first-child,
+  .direction-b .area > :first-child, .direction-b .contact > :first-child { grid-row: span 2; }
+  .direction-b .about > div, .direction-b .testimonials > div,
+  .direction-b .area > div, .direction-b .contact > div { grid-column: 2; }
+  .direction-b .about { align-items: start; }
+  .direction-b .testimonials__more { align-self: start; }
+}
+@media (max-width: 560px) {
+  .direction-b .about, .direction-b .testimonials, .direction-b .area, .direction-b .contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .direction-b .about > :first-child, .direction-b .testimonials > :first-child,
+  .direction-b .area > :first-child, .direction-b .contact > :first-child { grid-row: auto; }
+  .direction-b .about > div, .direction-b .testimonials > div,
+  .direction-b .area > div, .direction-b .contact > div { grid-column: auto; }
+}
+
+/* Review 2 · Portfolio: ein Raster, drei Spalten, alle Reihen gleich hoch, Bilder unbeschnitten.
+   Außen stehen Aufnahmen 7:5, in der Mitte Aufnahmen 3:2; die Spaltenbreiten folgen diesen Formaten. */
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.5026fr) minmax(0, 1.4fr);
+  gap: var(--gap);
+}
+.portfolio__grid figure { min-width: 0; }
+.portfolio__grid img { aspect-ratio: 7 / 5; object-fit: cover; }
+.portfolio__grid figure:nth-child(3n + 2) img { aspect-ratio: 2000 / 1331; }
+@media (max-width: 560px) {
+  .portfolio__grid { grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
+}
+
+/* Review 2 · Farbbänder über die volle Breite in einem Zug gemalt (einfarbig, kein Verlauf):
+   keine helle Haarlinie mehr an der Kante zwischen Fläche und Verlängerung. */
+.direction-b .hero, .direction-b .quick-services, .direction-b .contact {
+  background: none;
+  box-shadow: none;
+  clip-path: none;
+  border-image: conic-gradient(var(--ink) 0 0) fill 0 / 0 / 0 100vmax;
+}
+.direction-b .contact { border-top: 0; border-image-source: conic-gradient(var(--wash) 0 0); }
+.direction-b .trust { border-top: 0; }
+.direction-b .footer { background: var(--paper); border-top: 1px solid var(--line); }
+
+/* Review 2 · Hero: Textspalte beginnt auf der Oberkante der Fotos und endet auf ihrer Unterkante; Links als festes Raster wie in A. */
+@media (min-width: 801px) {
+  .direction-b .hero__masthead { align-self: start; padding-top: 0; }
+  .direction-b .hero__copy { align-self: stretch; }
+  .direction-b .hero__copy .hero__actions { margin-top: auto; }
+  .direction-b .hero__actions {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 4px var(--s3);
+    align-items: center;
+  }
+  .direction-b .hero__actions .button { grid-row: span 2; }
+  .direction-b .hero__actions .text-link { justify-self: start; }
+  .direction-b .hero__phone { gap: var(--s1) var(--s2); }
+}
+
+/* Review 2 · Tablet: alle Blocküberschriften in einer Größe, ohne Trennung mitten im Wort. */
+@media (min-width: 561px) and (max-width: 800px) {
+  :root { --heading: 2.5rem; }
+}
+@media (min-width: 561px) and (max-width: 800px) {
+  /* Einleitung und Fußzeile auf denselben Spaltenlinien wie die Blöcke darunter und darüber. */
+  .direction-b .intro, .direction-b .footer__inner {
+    grid-template-columns: calc((100% - 2 * var(--gap)) / 3) 1fr;
+  }
+}
+@media (min-width: 561px) and (max-width: 1000px) {
+  /* Kartentitel bleiben einzeilig, alle Karten einer Reihe sind gleich hoch. */
+  .direction-b .services .service h3 { font-size: 1.5rem; }
+}
