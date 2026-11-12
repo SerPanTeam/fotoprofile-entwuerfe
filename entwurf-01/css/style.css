@@ -775,3 +775,5 @@ html.has-menu { overflow: hidden; }
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: none; }
 }
+/* Ergänzung 12.11.2026: Satz aus dem Fragebogen im Bewertungsblock */
+.rating__lead { margin-top: 1.25rem; max-width: 34ch; font-size: 1.0625rem; line-height: 1.55; }

@@ -578,3 +578,6 @@ section[id], #studio-services { scroll-margin-top: 104px; }
 @media (max-width: 560px) {
   .direction-a .about img { max-width: none; }
 }
+/* Ergänzung 12.11.2026: Sätze aus dem Fragebogen */
+.quick-services__lead { margin: 0 0 1rem; max-width: 46ch; }
+.testimonials__lead { margin-top: .75rem; max-width: 40ch; }

@@ -719,3 +719,5 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .portfolio__column:nth-child(3):last-child { grid-column: 1 / -1; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); column-gap: var(--gap); }
   .portfolio__column:nth-child(3):last-child > .portfolio__item--quer { grid-column: 1 / -1; order: -1; }
 }
+/* Ergänzung 12.11.2026: Satz aus dem Fragebogen im Bewertungsblock */
+.rating__lead { max-width: 36ch; }

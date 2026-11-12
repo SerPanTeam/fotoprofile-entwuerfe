@@ -635,3 +635,6 @@ a.trust__fact:hover { text-decoration-thickness: 2px; }
   .site-header .button--compact { padding: 0 8px; font-size: 12px; }
   .menu-toggle { width: 40px; height: 40px; }
 }
+/* Ergänzung 12.11.2026: Satz aus dem Fragebogen im Bewertungsblock */
+.rating__lead { margin: 0 0 var(--s-5); max-width: 36ch; font-size: 1.0625rem; line-height: 1.5; }
+@media (max-width: 767px) { .rating__lead { margin-bottom: var(--s-4); } }
